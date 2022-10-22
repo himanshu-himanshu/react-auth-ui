@@ -15,3 +15,23 @@
 .flex-center {
     @apply flex justify-center items-center
 }
+
+.heading {
+    @apply text-7xl text-gray-700 tracking-wide
+}
+
+.primary-btn {
+    @apply tracking-wider font-bold flex flex-row justify-center items-center w-full
+}
+
+.primary-btn__container {
+    @apply relative px-4 py-5 text-2xl gray-border text-center bg-white hover:cursor-pointer
+}
+
+.primary-btn__overlay {
+    @apply absolute w-full h-full top-1.5 left-1.5 -z-20 group-hover:top-1 group-hover:left-1 gray-border duration-200
+}
+
+input[type="password"]:disabled {
+    background: white;
+  }
