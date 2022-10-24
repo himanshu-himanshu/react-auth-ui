@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .input {
-    @apply placeholder:tracking-wide py-5 px-2 text-xl border border-gray-400 focus:outline-none active:border-gray-600 focus:border-gray-600
+    @apply placeholder:tracking-wide w-full py-5 px-2 text-xl border focus:outline-none
 }
 
 .gray-border {
@@ -17,7 +17,7 @@
 }
 
 .heading {
-    @apply text-7xl text-gray-700 tracking-wide
+    @apply text-5xl md:text-6xl lg:text-7xl text-gray-700 tracking-wide
 }
 
 .primary-btn {
@@ -30,6 +30,10 @@
 
 .primary-btn__overlay {
     @apply absolute w-full h-full top-1.5 left-1.5 -z-20 group-hover:top-1 group-hover:left-1 gray-border duration-200
+}
+
+.errors {
+    @apply text-pink-600 ml-2 font-light
 }
 
 input[type="password"]:disabled {
