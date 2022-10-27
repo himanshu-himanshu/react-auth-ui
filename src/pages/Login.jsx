@@ -91,10 +91,7 @@ function Login() {
           {/** Signup Container */}
           <div className="flex-center flex-row space-x-2 p-2 text-md md:text-lg">
             <span className="tracking-wide">Don't have an account yet?</span>
-            <a
-              href="/signup"
-              className="font-[900] hover:-translate-y-0.5 duration-200"
-            >
+            <a href="/signup" className="secondary-btn">
               Sign Up
             </a>
           </div>

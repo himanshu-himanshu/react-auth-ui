@@ -12,6 +12,10 @@
     @apply border border-gray-800
 }
 
+.active-border {
+    @apply border-gray-400 active:border-gray-800 focus:border-gray-800
+}
+
 .flex-center {
     @apply flex justify-center items-center
 }
@@ -20,20 +24,24 @@
     @apply text-5xl md:text-6xl lg:text-7xl text-gray-700 tracking-wide
 }
 
-.primary-btn {
-    @apply tracking-wider font-bold flex flex-row justify-center items-center w-full
+.primary-btn__container {
+    @apply relative px-4 py-5 text-2xl gray-border text-center bg-white hover:cursor-pointer hover:bg-gray-800 hover:shadow-xl duration-300
 }
 
-.primary-btn__container {
-    @apply relative px-4 py-5 text-2xl gray-border text-center bg-white hover:cursor-pointer
+.primary-btn {
+    @apply tracking-wider font-bold flex flex-row justify-center items-center w-full text-gray-600 group-hover:text-white
 }
 
 .primary-btn__overlay {
-    @apply absolute w-full h-full top-1.5 left-1.5 -z-20 group-hover:top-1 group-hover:left-1 gray-border duration-200
+    @apply absolute w-full h-full top-1.5 left-1.5 -z-20 group-hover:top-0 group-hover:left-0 border border-gray-400 duration-200 bg-gray-800
 }
 
 .errors {
     @apply text-pink-600 ml-2 font-light
+}
+
+.secondary-btn {
+    @apply font-bold hover:-translate-y-0.5 hover:text-pink-500 duration-200
 }
 
 input[type="password"]:disabled {

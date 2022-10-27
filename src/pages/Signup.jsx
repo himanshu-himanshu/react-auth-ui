@@ -48,7 +48,7 @@ const Signup = () => {
                 className={`input ${
                   errors.username && touched.username
                     ? "border-pink-500"
-                    : "border-gray-400 active:border-gray-600 focus:border-gray-600"
+                    : "active-border"
                 }`}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -68,7 +68,7 @@ const Signup = () => {
                 className={`input ${
                   errors.email && touched.email
                     ? "border-pink-500"
-                    : "border-gray-400 active:border-gray-600 focus:border-gray-600"
+                    : "active-border"
                 }`}
                 value={values.email}
                 onChange={handleChange}
@@ -80,25 +80,23 @@ const Signup = () => {
             </div>
 
             <div className="flex flex-col space-y-1">
-              <div
-                className={`border flex flex-row justify-between items-center text-xl ${
-                  errors.password && touched.password
-                    ? "border-pink-500"
-                    : "border-gray-400 active:border-gray-600 focus:border-gray-600"
-                }`}
-              >
+              <div className="relative flex flex-row justify-between items-center text-xl">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Create Password"
-                  className="placeholder:tracking-wide  py-5 px-2 focus:outline-none active:border-gray-600 focus:border-gray-600 w-4/5 "
                   id="password"
                   name="password"
+                  className={`input w-full ${
+                    errors.password && touched.password
+                      ? "border-pink-500"
+                      : "active-border"
+                  }`}
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
 
-                <div className="cursor-pointer w-1/5 flex justify-end items-center mr-2">
+                <div className="absolute right-0 cursor-pointer flex justify-end items-center mr-2">
                   {!showPassword && (
                     <FiEye
                       className="text-gray-400"
@@ -129,10 +127,7 @@ const Signup = () => {
             {/** Signup Container */}
             <div className="flex-center flex-row space-x-2 p-2 text-md md:text-lg">
               <span className="tracking-wide">Already have an account?</span>
-              <a
-                href="/login"
-                className="font-[900] hover:-translate-y-0.5 duration-200"
-              >
+              <a href="/login" className="secondary-btn">
                 Login
               </a>
             </div>
