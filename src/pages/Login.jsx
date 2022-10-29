@@ -9,7 +9,7 @@ import { useState } from "react";
 import { CiLogin } from "react-icons/ci";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -89,16 +89,22 @@ function Login() {
           </div>
 
           {/** Signup Container */}
-          <div className="flex-center flex-row space-x-2 p-2 text-md md:text-lg">
-            <span className="tracking-wide">Don't have an account yet?</span>
-            <a href="/signup" className="secondary-btn">
-              Sign Up
+          <div className="flex-center flex-col space-y-2 lg:space-y-4 p-2 text-md md:text-lg">
+            <div className="flex-center flex-row space-x-2">
+              <span className="tracking-wide">Don't have an account yet?</span>
+              <a href="/signup" className="secondary-btn">
+                Sign Up
+              </a>
+            </div>
+
+            <a href="/forgotpassword" className="secondary-btn">
+              Forgot Password?
             </a>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Login;
