@@ -37,7 +37,7 @@
 }
 
 .errors {
-    @apply text-pink-600 ml-2 font-light
+    @apply text-pink-600 p-1 font-light bg-pink-100
 }
 
 .secondary-btn {
