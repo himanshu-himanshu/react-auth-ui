@@ -6,8 +6,8 @@ import { useState } from "react";
 //   userPasswordSchema,
 // } from "../Validations/Validation";
 
-import { CiLogin } from "react-icons/ci";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { TbUserCheck } from "react-icons/tb";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,10 +36,10 @@ const Login = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex-center">
-      <div className="w-full max-w-xl flex-center flex-col space-y-4">
+    <div className="parent relative min-h-screen flex-center">
+      <div className="bg-white w-full max-w-xl flex-center flex-col space-y-4 z-10">
         {/** Heading */}
-        <div className="p-2">
+        <div className="px-2 py-4">
           <h1 className="heading">Login</h1>
         </div>
 
@@ -84,7 +84,7 @@ const Login = () => {
           <div className="primary-btn__container group">
             <div className="primary-btn__overlay" />
             <button className="primary-btn" onClick={() => handleOnSubmit()}>
-              Login <CiLogin className="ml-2" />
+              Login <TbUserCheck className="ml-2" />
             </button>
           </div>
 

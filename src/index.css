@@ -33,7 +33,7 @@
 }
 
 .primary-btn__overlay {
-    @apply absolute w-full h-full top-1.5 left-1.5 -z-20 group-hover:top-0 group-hover:left-0 border border-gray-400 duration-200 bg-gray-800
+    @apply absolute w-full h-full top-1.5 left-1.5 -z-10 group-hover:top-0 group-hover:left-0 border border-gray-400 duration-200 bg-gray-800
 }
 
 .errors {
@@ -46,4 +46,10 @@
 
 input[type="password"]:disabled {
     background: white;
-  }
+}
+
+.parent {
+    background: url("./assets/bg3.jpg");
+    background-position: center;
+    background-size: cover;    
+}

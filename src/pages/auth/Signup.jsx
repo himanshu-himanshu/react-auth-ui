@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useFormik } from "formik";
 
-import { userSchema } from "../Validations/Validation";
+import { userSchema } from "../../Validations/Validation";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { TbUserCheck } from "react-icons/tb";
 
@@ -28,10 +28,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex-center">
-      <div className="w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2">
+    <div className="relative min-h-screen flex-center parent">
+      <div className="bg-white w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2 z-10">
         {/** Heading */}
-        <div className="p-2">
+        <div className="px-2 py-4">
           <h1 className="heading">Signup</h1>
         </div>
 
