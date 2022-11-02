@@ -36,8 +36,8 @@ const Login = () => {
   };
 
   return (
-    <div className="parent relative min-h-screen flex-center">
-      <div className="bg-white w-full max-w-xl flex-center flex-col space-y-4 z-10">
+    <div className="cover relative min-h-screen flex-center">
+      <div className="md:bg-white w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2 pt-4 md:pt-6 lg:pt-8">
         {/** Heading */}
         <div className="px-2 py-4">
           <h1 className="heading">Login</h1>
@@ -80,23 +80,23 @@ const Login = () => {
             </div>
           </div>
 
-          {/** Button Container */}
-          <div className="primary-btn__container group">
-            <div className="primary-btn__overlay" />
-            <button className="primary-btn" onClick={() => handleOnSubmit()}>
-              Login <TbUserCheck className="ml-2" />
-            </button>
-          </div>
+          {/** Login Button */}
+          <button
+            className="primary-btn"
+            type="submit"
+            onClick={() => handleOnSubmit()}
+          >
+            Login <TbUserCheck className="ml-2" />
+          </button>
 
           {/** Signup Container */}
           <div className="flex-center flex-col space-y-2 lg:space-y-4 p-2 text-md md:text-lg">
-            <div className="flex-center flex-row space-x-2">
+            <div className="flex flex-col justify-center items-center space-y-1 md:flex-row md:space-x-2">
               <span className="tracking-wide">Don't have an account yet?</span>
-              <a href="/signup" className="secondary-btn">
-                Sign Up
+              <a href="/register" className="secondary-btn">
+                Register Now
               </a>
             </div>
-
             <a href="/forgotpassword" className="secondary-btn">
               Forgot Password?
             </a>

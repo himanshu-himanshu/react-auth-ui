@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const userSchema = yup.object().shape({
+export const userValidationSchema = yup.object().shape({
   username: yup
     .string()
     .required("⚠ Username is required")

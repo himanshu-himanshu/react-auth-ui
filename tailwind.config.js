@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         Josefin: ["Josefin Slab", "serif"],
       },
+      backgroundImage: {
+        hero: "url('/src/assets/bg3.jpg')",
+      },
     },
   },
   plugins: [],

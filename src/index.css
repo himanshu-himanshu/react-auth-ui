@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .input {
-    @apply placeholder:tracking-wide w-full py-5 px-2 text-xl border focus:outline-none
+    @apply placeholder:tracking-wide w-full py-5 px-2 text-xl border focus:outline-none shadow-sm
 }
 
 .gray-border {
@@ -21,19 +21,11 @@
 }
 
 .heading {
-    @apply text-5xl md:text-6xl lg:text-7xl text-gray-700 tracking-wide
-}
-
-.primary-btn__container {
-    @apply relative px-4 py-5 text-2xl gray-border text-center bg-white hover:cursor-pointer hover:bg-gray-800 hover:shadow-xl duration-300
+    @apply text-5xl md:text-6xl lg:text-7xl text-gray-700
 }
 
 .primary-btn {
-    @apply tracking-wider font-bold flex flex-row justify-center items-center w-full text-gray-600 group-hover:text-white
-}
-
-.primary-btn__overlay {
-    @apply absolute w-full h-full top-1.5 left-1.5 -z-10 group-hover:top-0 group-hover:left-0 border border-gray-400 duration-200 bg-gray-800
+    @apply relative px-4 py-5 text-2xl gray-border text-center bg-gray-700  tracking-wider font-bold flex flex-row justify-center items-center text-white hover:cursor-pointer hover:bg-gray-800 hover:hover:-translate-y-0.5 hover:shadow-xl duration-300
 }
 
 .errors {
@@ -41,15 +33,13 @@
 }
 
 .secondary-btn {
-    @apply font-bold hover:-translate-y-0.5 hover:text-pink-500 duration-200
+    @apply font-bold -translate-y-0.5 hover:-translate-y-1 hover:text-pink-500 duration-200
 }
 
 input[type="password"]:disabled {
     background: white;
 }
 
-.parent {
-    background: url("./assets/bg3.jpg");
-    background-position: center;
-    background-size: cover;    
+.cover {
+    @apply bg-white md:bg-hero bg-cover bg-center bg-no-repeat
 }

@@ -1,38 +1,67 @@
 import React from "react";
+import * as yup from "yup";
 import { useState } from "react";
 import { useFormik } from "formik";
+import axios from "axios";
 
-import { userSchema } from "../../Validations/Validation";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { TbUserCheck } from "react-icons/tb";
+import { userValidationSchema } from "../../Validations/registerValidation";
+import { API_URL } from "./../../constants/url";
+import { REGISTER_ENDPOINT } from "./../../constants/endpoints";
+import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
+import Spinner from "../../components/Spinner";
 
-const Signup = () => {
-  const onSubmit = (values, actions) => {
-    console.log(values);
-  };
-
-  const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
-    useFormik({
-      initialValues: {
-        username: "",
-        email: "",
-        password: "",
-      },
-      validationSchema: userSchema,
-      onSubmit,
-    });
+const Register = () => {
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const form = {
+    username: "",
+    email: "",
+    password: "",
+  };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  const submitForm = (values, actions) => {
+    setLoading(true);
+    const payload = {
+      email: values.email,
+      username: values.username,
+      password: values.password,
+    };
+    setTimeout(() => {
+      axios.post(`${API_URL}${REGISTER_ENDPOINT}`, payload).then((e) => {
+        setLoading(false);
+        if (e.data.success) {
+          console.log("Data", e.data);
+          actions.resetForm();
+        } else {
+          if (Object.keys(e.data.message)[0] === "email") {
+            actions.setErrors({ email: e.data.message.email });
+          } else if (Object.keys(e.data.message)[0] === "username") {
+            actions.setErrors({ username: e.data.message.username });
+          }
+        }
+      });
+    }, 2000);
+  };
+
+  const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
+    useFormik({
+      initialValues: form,
+      validationSchema: userValidationSchema,
+      onSubmit: submitForm,
+    });
+
   return (
-    <div className="relative min-h-screen flex-center parent">
-      <div className="bg-white w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2 z-10">
+    <div className="cover relative min-h-screen flex-center">
+      <div className="md:bg-white w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2 pt-4 md:pt-8 lg:pt-12">
         {/** Heading */}
-        <div className="px-2 py-4">
-          <h1 className="heading">Signup</h1>
+        <div className="px-2">
+          <h1 className="heading">Register</h1>
         </div>
 
         {/** Inputs Container */}
@@ -58,7 +87,6 @@ const Signup = () => {
                 <span className="errors">{errors.username}</span>
               )}
             </div>
-
             <div className="flex flex-col space-y-1">
               <input
                 type="email"
@@ -78,7 +106,6 @@ const Signup = () => {
                 <span className="errors">{errors.email}</span>
               )}
             </div>
-
             <div className="flex flex-col space-y-1">
               <div className="relative flex flex-row justify-between items-center text-xl">
                 <input
@@ -115,14 +142,20 @@ const Signup = () => {
                 <span className="errors">{errors.password}</span>
               )}
             </div>
+            {loading && <Spinner />}
 
-            {/** Button Container */}
-            <div className="primary-btn__container group">
-              <div className="primary-btn__overlay" />
+            {/** Register Button */}
+            {!loading && (
               <button className="primary-btn" type="submit">
-                Register <TbUserCheck className="ml-2" />
+                Register
+                <FiUserPlus className="ml-2" />
               </button>
-            </div>
+            )}
+            {successMsg && (
+              <span className="bg-green-100 p-1 font-light text-md text-center">
+                {successMsg}
+              </span>
+            )}
 
             {/** Signup Container */}
             <div className="flex-center flex-row space-x-2 p-2 text-md md:text-lg">
@@ -138,4 +171,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;
