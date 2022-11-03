@@ -1,14 +1,6 @@
 import * as yup from "yup";
 
-export const registerValidation = yup.object().shape({
-  username: yup
-    .string()
-    .required("⚠ Username is required")
-    .min(6, "⚠ Create a username atleast 6 characters long.")
-    .matches(
-      "^(?=[a-zA-Z0-9._]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$",
-      "⚠ Given username contains invalid characters"
-    ),
+export const loginValidation = yup.object().shape({
   email: yup
     .string()
     .email("⚠ Please enter a valid email address.")
