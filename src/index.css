@@ -12,6 +12,10 @@
     @apply border border-gray-800
 }
 
+.green-border {
+    @apply border border-green-500
+}
+
 .active-border {
     @apply border-gray-400 active:border-gray-800 focus:border-gray-800
 }
