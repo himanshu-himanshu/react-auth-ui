@@ -10,9 +10,7 @@ const Spinner = ({ checkSign }) => {
       }`}
     >
       {!checkSign && <ImSpinner9 className="ml-4 animate-spin" />}
-      {checkSign && (
-        <BsPatchCheckFill className="text-green-500 h-8 animate-bounce" />
-      )}
+      {checkSign && <BsPatchCheckFill className="text-green-500 h-8" />}
     </div>
   );
 };

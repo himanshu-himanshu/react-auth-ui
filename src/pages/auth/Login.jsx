@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import "react-toastify/dist/ReactToastify.css";
 // import {
@@ -45,9 +46,17 @@ const Login = () => {
   return (
     <>
       <div className="cover relative min-h-screen flex-center">
-        <div className="md:bg-white w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2 pt-4 md:pt-6 lg:pt-8">
+        <motion.div
+          animate={{ opacity: [0, 1], scale: [0, 1] }}
+          transition={{
+            duration: 0.5,
+            type: "spring",
+            stiffness: 100,
+          }}
+          className="md:bg-white w-full max-w-xl flex-center flex-col space-y-1 lg:space-y-2 pt-4 md:pt-8"
+        >
           {/** Heading */}
-          <div className="px-2 py-4">
+          <div className="px-2 py-0">
             <h1 className="heading">Login</h1>
           </div>
 
@@ -112,7 +121,7 @@ const Login = () => {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <ToastContainer
         theme="colored"
