@@ -4,15 +4,17 @@ import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
+import axios from "axios";
 
 import { loginValidation } from "../../Validations/loginValidation";
 import RegisterNow from "../../components/RegisterNow";
 import Spinner from "../../components/Spinner";
 import PrimaryButton from "../../components/PrimaryButton";
 import PasswordEye from "../../components/PasswordEye";
+import { API_URL } from "./../../constants/url";
+import { LOGIN_ENDPOINT } from "./../../constants/endpoints";
 
-const Login = () => {
-  //const navigate = useNavigate();
+const Login = ({ user, setUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -38,7 +40,52 @@ const Login = () => {
     window.history.replaceState({}, document.title);
   }, [location.state]);
 
-  const submitForm = () => {};
+  const submitForm = (values, actions) => {
+    setLoading(true);
+
+    const payload = {
+      email: values.email,
+      password: values.password,
+    };
+
+    setTimeout(() => {
+      axios
+        .post(`${API_URL}${LOGIN_ENDPOINT}`, payload)
+        .then((e) => {
+          if (e.data.success) {
+            console.log(e.data);
+            setLoading(false);
+            setShowCheck(true);
+            setTimeout(() => {
+              actions.resetForm();
+              navigate("/profile");
+            }, 400);
+            setUser(e.data.data);
+          } else {
+            if (Object.keys(e.data.message)[0] === "email") {
+              actions.setErrors({ email: e.data.message.email });
+            } else if (Object.keys(e.data.message)[0] === "password") {
+              actions.setErrors({ password: e.data.message.password });
+            }
+            setShowFailed(true);
+            setLoading(false);
+            setTimeout(() => {
+              setShowFailed(false);
+            }, 1000);
+          }
+        })
+        .catch((err) => {
+          setLoading(false);
+          setShowFailed(true);
+          setTimeout(() => {
+            setShowFailed(false);
+          }, 1000);
+          toast.error(`💣 oops! ${err.message}`, {
+            toastId: "error1",
+          });
+        });
+    }, 1500);
+  };
 
   const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
     useFormik({
@@ -91,7 +138,7 @@ const Login = () => {
                 <div className="relative flex flex-row justify-between items-center text-xl">
                   <input
                     type={showPassword ? "text" : "password"}
-                    placeholder="Create Password"
+                    placeholder="Password"
                     id="password"
                     name="password"
                     className={`input ${

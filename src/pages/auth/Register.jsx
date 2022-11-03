@@ -58,6 +58,11 @@ const Register = () => {
             } else if (Object.keys(e.data.message)[0] === "username") {
               actions.setErrors({ username: e.data.message.username });
             }
+            setShowFailed(true);
+            setLoading(false);
+            setTimeout(() => {
+              setShowFailed(false);
+            }, 1000);
           }
         })
         .catch((err) => {

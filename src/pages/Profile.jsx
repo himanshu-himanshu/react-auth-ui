@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function Profile() {
+function Profile({ user, setUser }) {
+  console.log(user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (
+      user &&
+      Object.keys(user).length === 0 &&
+      Object.getPrototypeOf(user) === Object.prototype
+    ) {
+      navigate("/login");
+    }
+  }, []);
+
   return <div>Profile</div>;
 }
 
