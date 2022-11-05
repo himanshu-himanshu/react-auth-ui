@@ -15,8 +15,10 @@ const PrimaryButton = ({ title }) => {
       {title}
       {title === "Login" ? (
         <TbUserCheck className="ml-2" />
-      ) : (
+      ) : title === "Register" ? (
         <FiUserPlus className="ml-2" />
+      ) : (
+        ""
       )}
     </motion.button>
   );

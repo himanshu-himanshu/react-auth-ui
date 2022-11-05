@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Profile({ user, setUser }) {
-  console.log(user);
   const navigate = useNavigate();
   useEffect(() => {
     if (

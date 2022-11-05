@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         Josefin: ["Josefin Slab", "serif"],
+        sacramento: ["Sacramento", "cursive"],
       },
       backgroundImage: {
         hero: "url('/src/assets/bg3.jpg')",
