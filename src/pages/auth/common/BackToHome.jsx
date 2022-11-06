@@ -4,7 +4,7 @@ import { BiArrowBack } from "react-icons/bi";
 const BackToHome = ({ handleBack }) => {
   return (
     <div
-      className="w-full h-full absolute text-2xl p-2 "
+      className="absolute top-0 left-0 text-2xl p-2 "
       onClick={() => handleBack()}
     >
       <BiArrowBack className="hover:cursor-pointer" />

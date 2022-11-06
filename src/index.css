@@ -52,3 +52,7 @@ input[type="password"]:disabled {
 .cover {
     @apply bg-white md:bg-hero bg-cover bg-center bg-no-repeat
 }
+
+.form-div {
+    @apply relative flex flex-row justify-between items-center text-xl
+}

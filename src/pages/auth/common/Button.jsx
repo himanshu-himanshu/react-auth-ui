@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { TbUserCheck } from "react-icons/tb";
 import { FiUserPlus } from "react-icons/fi";
 
-const PrimaryButton = ({ title }) => {
+const Button = ({ title }) => {
   return (
     <motion.button
       whileHover={{ translateY: -2 }}
@@ -24,4 +24,4 @@ const PrimaryButton = ({ title }) => {
   );
 };
 
-export default PrimaryButton;
+export default Button;

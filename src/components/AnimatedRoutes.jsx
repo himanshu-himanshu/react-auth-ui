@@ -4,8 +4,8 @@ import { AnimatePresence } from "framer-motion";
 
 import Homepage from "../pages/homepage/Homepage";
 import Profile from "../pages/Profile";
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
+import Login from "../pages/auth/Login/Login";
+import Register from "../pages/auth/Register/Register";
 
 const AnimatedRoutes = ({ user, setUser }) => {
   const location = useLocation();
