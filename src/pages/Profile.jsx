@@ -17,7 +17,7 @@ function Profile() {
     navigate("/");
   };
   return (
-    <div>
+    <>
       <h1
         onClick={() => handleBack()}
         className="text-2xl hover:cursor-pointer"
@@ -31,7 +31,7 @@ function Profile() {
       >
         Logout
       </button>
-    </div>
+    </>
   );
 }
 

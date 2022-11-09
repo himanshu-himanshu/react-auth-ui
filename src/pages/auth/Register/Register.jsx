@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
-import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 
 import { registerValidation } from "../../../Validations/registerValidation";
@@ -14,8 +13,7 @@ import PasswordEye from "../common/PasswordEye";
 import BackToHome from "../common/BackToHome";
 import InputComponent from "../common/Input";
 import Button from "../common/Button";
-import InnerDiv from "../common/InnerDiv";
-import OuterDiv from "../common/OuterDiv";
+import ParentDiv from "../common/ParentDiv";
 
 const Register = () => {
   /**
@@ -110,95 +108,83 @@ const Register = () => {
     });
 
   return (
-    <OuterDiv>
+    <ParentDiv>
       <BackToHome handleBack={handleBack} />
-      {/** Inner Div */}
-      <InnerDiv>
-        {/** Heading */}
-        <div className="px-2 py-0">
-          <h1 className="heading">Register</h1>
-        </div>
+      {/** Heading */}
+      <div className="px-2 py-0">
+        <h1 className="heading">Register</h1>
+      </div>
 
-        {/** Inputs Container */}
-        <div className="w-full px-10 md:px-14 lg:px-16 py-4 md:py-6 lg:py-10">
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-6 ">
-            {/** Inputs */}
-            {/** Username Input */}
-            <div className="flex flex-col space-y-1">
-              <InputComponent
-                type="text"
-                id="username"
-                placeholder="Username"
-                errors={errors}
-                touched={touched}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                values={values}
-              />
-              {errors.username && touched.username && (
-                <span className="errors">{errors.username}</span>
-              )}
-            </div>
-            {/** Email Input */}
-            <div className="flex flex-col space-y-1">
-              <InputComponent
-                type="email"
-                id="email"
-                placeholder="Email"
-                errors={errors}
-                touched={touched}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                values={values}
-              />
-              {errors.email && touched.email && (
-                <span className="errors">{errors.email}</span>
-              )}
-            </div>
-            {/** Password Input */}
-            <div className="flex flex-col space-y-1">
-              <div className="form-div">
-                <InputComponent
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  errors={errors}
-                  touched={touched}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  values={values}
-                />
-                <PasswordEye
-                  handleShowPassword={handleShowPassword}
-                  showPassword={showPassword}
-                />
-              </div>
-              {/** Errors */}
-              {errors.password && touched.password && (
-                <span className="errors">{errors.password}</span>
-              )}
-            </div>
-
-            {/** Spinner Conatiner */}
-            {loading && <Spinner />}
-
-            {/** Spinner Checkmark Conatiner */}
-            {showCheck && <Spinner checkSign={true} failedSign={false} />}
-
-            {/** Spinner Error Conatiner */}
-            {showFailed && <Spinner failedSign={true} checkSign={false} />}
-
-            {/** Register Button */}
-            {!loading && !showCheck && !showFailed && (
-              <Button title="Register" />
+      {/** Inputs Container */}
+      <div className="w-full px-10 md:px-14 lg:px-16 py-4 md:py-6 lg:py-10">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-6 ">
+          <div className="flex flex-col space-y-1">
+            <InputComponent
+              type="text"
+              id="username"
+              placeholder="Username"
+              errors={errors}
+              touched={touched}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              values={values}
+            />
+            {errors.username && touched.username && (
+              <span className="errors">{errors.username}</span>
             )}
+          </div>
 
-            {/** Login Container */}
-            <LoginNow />
-          </form>
-        </div>
-      </InnerDiv>
-    </OuterDiv>
+          <div className="flex flex-col space-y-1">
+            <InputComponent
+              type="email"
+              id="email"
+              placeholder="Email"
+              errors={errors}
+              touched={touched}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              values={values}
+            />
+            {errors.email && touched.email && (
+              <span className="errors">{errors.email}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col space-y-1">
+            <div className="form-div">
+              <InputComponent
+                type="password"
+                id="password"
+                placeholder="Password"
+                errors={errors}
+                touched={touched}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                values={values}
+              />
+              <PasswordEye
+                handleShowPassword={handleShowPassword}
+                showPassword={showPassword}
+              />
+            </div>
+
+            {errors.password && touched.password && (
+              <span className="errors">{errors.password}</span>
+            )}
+          </div>
+
+          {loading && <Spinner />}
+
+          {showCheck && <Spinner checkSign={true} failedSign={false} />}
+
+          {showFailed && <Spinner failedSign={true} checkSign={false} />}
+
+          {!loading && !showCheck && !showFailed && <Button title="Register" />}
+
+          <LoginNow />
+        </form>
+      </div>
+    </ParentDiv>
   );
 };
 

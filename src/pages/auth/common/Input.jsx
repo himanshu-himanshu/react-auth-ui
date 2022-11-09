@@ -2,13 +2,13 @@ import React from "react";
 
 const InputComponent = ({ type, id, placeholder, ...restProps }) => {
   const classname =
-    type === "username"
+    id === "username"
       ? `${
           restProps.errors.username && restProps.touched.username
             ? "border-pink-500"
             : "active-border"
         }`
-      : type === "email"
+      : id === "email"
       ? `${
           restProps.errors.email && restProps.touched.email
             ? "border-pink-500"

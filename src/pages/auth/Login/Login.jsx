@@ -14,8 +14,7 @@ import { LOGIN_ENDPOINT } from "../../../constants/endpoints";
 import BackToHome from "../common/BackToHome";
 import InputComponent from "../common/Input";
 import Button from "../common/Button";
-import InnerDiv from "../common/InnerDiv";
-import OuterDiv from "../common/OuterDiv";
+import ParentDiv from "../common/ParentDiv";
 
 const Login = ({ user, setUser }) => {
   /**
@@ -79,9 +78,10 @@ const Login = ({ user, setUser }) => {
     setTimeout(() => {
       axios
         .post(`${API_URL}${LOGIN_ENDPOINT}`, payload)
-        .then((e) => {
-          if (e.data.success) {
-            console.log(e.data);
+        .then(({ data }) => {
+          console.log(data);
+          if (data.success) {
+            console.log(data);
             setLoading(false);
             setShowCheck(true);
             setTimeout(() => {
@@ -91,18 +91,18 @@ const Login = ({ user, setUser }) => {
             localStorage.setItem(
               "user",
               JSON.stringify({
-                name: e.data.data.username,
-                email: e.data.data.email,
-                token: e.data.data.token,
+                name: data.data.username,
+                email: data.data.email,
+                token: data.data.token,
               })
             );
-            setUser(e.data.data);
+            setUser(data.data);
           } else {
-            if (Object.keys(e.data.message)[0] === "email") {
-              actions.setErrors({ email: e.data.message.email });
-            } else if (Object.keys(e.data.message)[0] === "password") {
+            if (Object.keys(data.message)[0] === "email") {
+              actions.setErrors({ email: data.message.email });
+            } else if (Object.keys(data.message)[0] === "password") {
               setShowPassword(true);
-              actions.setErrors({ password: e.data.message.password });
+              actions.setErrors({ password: data.message.password });
             }
             setShowFailed(true);
             setLoading(false);
@@ -137,74 +137,71 @@ const Login = ({ user, setUser }) => {
     });
 
   return (
-    <OuterDiv>
+    <ParentDiv>
       <BackToHome handleBack={handleBack} />
+      {/** Heading */}
+      <div className="px-2 py-0">
+        <h1 className="heading">Login</h1>
+      </div>
 
-      <InnerDiv>
-        {/** Heading */}
-        <div className="px-2 py-0">
-          <h1 className="heading">Login</h1>
-        </div>
-
-        {/** Inputs Container */}
-        <div className="w-full px-10 md:px-14 lg:px-16 py-4 md:py-8 lg:py-12">
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-8">
-            {/** Email Input */}
-            <div className="flex flex-col space-y-1">
+      {/** Inputs Container */}
+      <div className="w-full px-10 md:px-14 lg:px-16 py-4 md:py-8 lg:py-12">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-8">
+          {/** Email Input */}
+          <div className="flex flex-col space-y-1">
+            <InputComponent
+              type="email"
+              id="email"
+              placeholder="Email"
+              errors={errors}
+              touched={touched}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              values={values}
+            />
+            {errors.email && touched.email && (
+              <span className="errors">{errors.email}</span>
+            )}
+          </div>
+          <div className="flex flex-col space-y-1">
+            <div className="form-div">
               <InputComponent
-                type="email"
-                id="email"
-                placeholder="Email"
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Password"
                 errors={errors}
                 touched={touched}
                 handleBlur={handleBlur}
                 handleChange={handleChange}
                 values={values}
               />
-              {errors.email && touched.email && (
-                <span className="errors">{errors.email}</span>
-              )}
+              <PasswordEye
+                handleShowPassword={handleShowPassword}
+                showPassword={showPassword}
+              />
             </div>
-            <div className="flex flex-col space-y-1">
-              <div className="form-div">
-                <InputComponent
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  errors={errors}
-                  touched={touched}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  values={values}
-                />
-                <PasswordEye
-                  handleShowPassword={handleShowPassword}
-                  showPassword={showPassword}
-                />
-              </div>
-              {errors.password && touched.password && (
-                <span className="errors">{errors.password}</span>
-              )}
-            </div>
+            {errors.password && touched.password && (
+              <span className="errors">{errors.password}</span>
+            )}
+          </div>
 
-            {/** Spinner Conatiner */}
-            {loading && <Spinner />}
+          {/** Spinner Conatiner */}
+          {loading && <Spinner />}
 
-            {/** Spinner Checkmark Conatiner */}
-            {showCheck && <Spinner checkSign={true} failedSign={false} />}
+          {/** Spinner Checkmark Conatiner */}
+          {showCheck && <Spinner checkSign={true} failedSign={false} />}
 
-            {/** Spinner Error Conatiner */}
-            {showFailed && <Spinner failedSign={true} checkSign={false} />}
+          {/** Spinner Error Conatiner */}
+          {showFailed && <Spinner failedSign={true} checkSign={false} />}
 
-            {/** Login Button */}
-            {!loading && !showCheck && !showFailed && <Button title="Login" />}
+          {/** Login Button */}
+          {!loading && !showCheck && !showFailed && <Button title="Login" />}
 
-            {/** Signup Container */}
-            <RegisterNow />
-          </form>
-        </div>
-      </InnerDiv>
-    </OuterDiv>
+          {/** Signup Container */}
+          <RegisterNow />
+        </form>
+      </div>
+    </ParentDiv>
   );
 };
 
