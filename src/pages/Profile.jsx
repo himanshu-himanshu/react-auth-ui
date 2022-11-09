@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Profile() {
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
   useEffect(() => {
-    const user = localStorage.getItem("user");
     if (!user) {
       navigate("/");
     }
   }, []);
+
   const handleBack = () => {
     navigate("/");
   };
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/");
   };
+
   return (
     <>
       <h1
