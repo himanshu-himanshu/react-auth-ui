@@ -12,7 +12,7 @@ import PasswordEye from "../common/PasswordEye";
 import { API_URL } from "../../../constants/url";
 import { LOGIN_ENDPOINT } from "../../../constants/endpoints";
 import BackToHome from "../common/BackToHome";
-import InputComponent from "../common/Input";
+import Input from "../common/Input";
 import Button from "../common/Button";
 import ParentDiv from "../common/ParentDiv";
 
@@ -60,7 +60,7 @@ const Login = ({ user, setUser }) => {
     if (user) {
       navigate("/profile");
     }
-  }, [location.state]);
+  }, [location.state, navigate]);
 
   /**
    * -----------------------------------------------
@@ -149,7 +149,7 @@ const Login = ({ user, setUser }) => {
         <form onSubmit={handleSubmit} className="flex flex-col space-y-8">
           {/** Email Input */}
           <div className="flex flex-col space-y-1">
-            <InputComponent
+            <Input
               type="email"
               id="email"
               placeholder="Email"
@@ -165,7 +165,7 @@ const Login = ({ user, setUser }) => {
           </div>
           <div className="flex flex-col space-y-1">
             <div className="form-div">
-              <InputComponent
+              <Input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Password"

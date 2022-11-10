@@ -26,7 +26,7 @@ const AnimatedRoutes = ({ user, setUser }) => {
         <Route
           path="/register"
           exact
-          element={<Register user={user} setUser={setUser} />}
+          element={<Register />}
         />
       </Routes>
     </AnimatePresence>

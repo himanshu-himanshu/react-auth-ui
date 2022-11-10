@@ -1,14 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { API_URL } from "../../constants/url";
+import { REGISTER_ENDPOINT } from "../../constants/endpoints";
+import { setMessage, clearMessage } from "../messages";
+
+//import authServices from "./authServices";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
 export const initialState = {
   user: user ? user : null,
-  loading: false,
+  showLoading: false,
   error: false,
-  message: "",
   success: false,
 };
+
+export const register = createAsyncThunk("auth/register", (user, thunkAPI) => {
+  axios
+    .post(`${API_URL}${REGISTER_ENDPOINT}`, user)
+    .then((e) => {
+      thunkAPI.dispatch(setMessage(e.data));
+      console.log("Inside authSlice", e.data);
+    })
+    .catch((err) => {
+      const message = err.response || err.toString();
+      return thunkAPI.rejectWithValue(message);
+    });
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -16,13 +35,26 @@ const authSlice = createSlice({
   reducers: {
     resetState: (state) => {
       state.loading = false;
-      state.error = "";
-      state.message = "";
+      state.error = false;
       state.success = false;
     },
     addUser: (state, action) => {
       state.user = action.payload;
     },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(register.pending, (state) => {
+      state.showLoading = true;
+    });
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.showLoading = false;
+    });
+    builder.addCase(register.rejected, (state, action) => {
+      state.showLoading = false;
+      state.error = action.payload.message;
+      state.success = false;
+    });
   },
 });
 

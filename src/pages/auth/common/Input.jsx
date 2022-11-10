@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputComponent = ({ type, id, placeholder, ...restProps }) => {
+const Input = ({ type, id, placeholder, ...restProps }) => {
   const classname =
     id === "username"
       ? `${
@@ -28,9 +28,9 @@ const InputComponent = ({ type, id, placeholder, ...restProps }) => {
       className={`input ${classname}`}
       onChange={restProps.handleChange}
       onBlur={restProps.handleBlur}
-      value={restProps.values.username}
+      value={restProps.values.value}
     />
   );
 };
 
-export default InputComponent;
+export default Input;

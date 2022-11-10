@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -11,7 +11,7 @@ import Spinner from "../../../components/Spinner";
 import LoginNow from "../Login/LoginNow";
 import PasswordEye from "../common/PasswordEye";
 import BackToHome from "../common/BackToHome";
-import InputComponent from "../common/Input";
+import Input from "../common/Input";
 import Button from "../common/Button";
 import ParentDiv from "../common/ParentDiv";
 
@@ -22,8 +22,8 @@ const Register = () => {
    * -----------------------------------------------
    */
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [showCheck, setShowCheck] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showFailed, setShowFailed] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -48,7 +48,6 @@ const Register = () => {
    */
   const submitForm = (values, actions) => {
     setLoading(true);
-
     const payload = {
       email: values.email,
       username: values.username,
@@ -119,7 +118,7 @@ const Register = () => {
       <div className="w-full px-10 md:px-14 lg:px-16 py-4 md:py-6 lg:py-10">
         <form onSubmit={handleSubmit} className="flex flex-col space-y-6 ">
           <div className="flex flex-col space-y-1">
-            <InputComponent
+            <Input
               type="text"
               id="username"
               placeholder="Username"
@@ -135,7 +134,7 @@ const Register = () => {
           </div>
 
           <div className="flex flex-col space-y-1">
-            <InputComponent
+            <Input
               type="email"
               id="email"
               placeholder="Email"
@@ -152,8 +151,8 @@ const Register = () => {
 
           <div className="flex flex-col space-y-1">
             <div className="form-div">
-              <InputComponent
-                type="password"
+              <Input
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Password"
                 errors={errors}

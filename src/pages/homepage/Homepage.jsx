@@ -1,7 +1,34 @@
 import React from "react";
 import Button from "./Button";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  const handleLogOut = () => {
+    console.log("lol");
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+  const handleSignup = () => {
+    navigate("/register");
+  };
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(user);
+    } else {
+      setUser(null);
+    }
+  }, [user, setUser]);
+
   return (
     <div className="w-full h-screen bg-gray-800">
       <div className="container h-full max-w-7xl mx-auto flex flex-col items-center justify-center space-y-24 py-12 px-6">
@@ -17,10 +44,21 @@ const Homepage = () => {
             free.
           </h1>
         </div>
-        <div className="flex flex-row space-x-8 justify-center items-center">
-          <Button title="Sign Up" link="register" />
-          <Button title="Log In" link="login" />
-        </div>
+        {user && (
+          <div>
+            <Button
+              title="Logout"
+              style={"hover:bg-pink-500 hover:border-pink-500"}
+              onClick={handleLogOut}
+            />
+          </div>
+        )}
+        {!user && (
+          <div className="flex flex-row space-x-8 justify-center items-center">
+            <Button title="Sign Up" link="register" onClick={handleSignup} />
+            <Button title="Log In" link="login" onClick={handleLogin} />
+          </div>
+        )}
       </div>
     </div>
   );

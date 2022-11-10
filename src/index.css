@@ -5,8 +5,16 @@
 @tailwind components;
 @tailwind utilities;
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .input {
-    @apply placeholder:tracking-wide w-full py-5 px-2 text-xl border focus:outline-none shadow-sm
+    @apply placeholder:tracking-wide w-full py-5 px-2 text-xl border focus:outline-none shadow-sm active:bg-white focus:bg-white
+   
 }
 
 .gray-border {

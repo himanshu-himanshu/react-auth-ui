@@ -10,7 +10,7 @@ function Profile() {
     if (!user) {
       navigate("/");
     }
-  }, []);
+  }, [user, navigate]);
 
   const handleBack = () => {
     navigate("/");
