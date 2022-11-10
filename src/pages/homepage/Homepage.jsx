@@ -1,17 +1,17 @@
-import React from "react";
-import Button from "./Button";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
+import Button from "./Button";
 
 const Homepage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
   const handleLogOut = () => {
-    console.log("lol");
-    localStorage.removeItem("user");
-    setUser(null);
+    setTimeout(() => {
+      localStorage.removeItem("user");
+      setUser(null);
+    }, 500);
   };
   const handleSignup = () => {
     navigate("/register");
@@ -45,18 +45,26 @@ const Homepage = () => {
           </h1>
         </div>
         {user && (
-          <div>
-            <Button
-              title="Logout"
-              style={"hover:bg-pink-500 hover:border-pink-500"}
-              onClick={handleLogOut}
-            />
-          </div>
+          <Button
+            title="Logout"
+            dynamicStyle="hover:bg-pink-500 hover:border-pink-500"
+            onClick={handleLogOut}
+          />
         )}
         {!user && (
           <div className="flex flex-row space-x-8 justify-center items-center">
-            <Button title="Sign Up" link="register" onClick={handleSignup} />
-            <Button title="Log In" link="login" onClick={handleLogin} />
+            <Button
+              title="Sign Up"
+              link="register"
+              dynamicStyle="hover:bg-sky-500 hover:border-sky-500"
+              onClick={handleSignup}
+            />
+            <Button
+              title="Log In"
+              link="login"
+              dynamicStyle="hover:bg-blue-500 hover:border-blue-500"
+              onClick={handleLogin}
+            />
           </div>
         )}
       </div>

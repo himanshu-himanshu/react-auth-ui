@@ -16,7 +16,7 @@ import Input from "../common/Input";
 import Button from "../common/Button";
 import ParentDiv from "../common/ParentDiv";
 
-const Login = ({ user, setUser }) => {
+const Login = () => {
   /**
    * -----------------------------------------------
    * React hooks below
@@ -24,6 +24,7 @@ const Login = ({ user, setUser }) => {
    */
   const location = useLocation();
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [showCheck, setShowCheck] = useState(false);
   const [showFailed, setShowFailed] = useState(false);
@@ -58,7 +59,7 @@ const Login = ({ user, setUser }) => {
     window.history.replaceState({}, document.title);
     const user = localStorage.getItem("user");
     if (user) {
-      navigate("/profile");
+      navigate("/");
     }
   }, [location.state, navigate]);
 
@@ -86,7 +87,7 @@ const Login = ({ user, setUser }) => {
             setShowCheck(true);
             setTimeout(() => {
               actions.resetForm();
-              navigate("/profile");
+              navigate("/");
             }, 400);
             localStorage.setItem(
               "user",
@@ -96,7 +97,6 @@ const Login = ({ user, setUser }) => {
                 token: data.data.token,
               })
             );
-            setUser(data.data);
           } else {
             if (Object.keys(data.message)[0] === "email") {
               actions.setErrors({ email: data.message.email });

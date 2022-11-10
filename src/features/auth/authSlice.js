@@ -3,9 +3,6 @@ import axios from "axios";
 
 import { API_URL } from "../../constants/url";
 import { REGISTER_ENDPOINT } from "../../constants/endpoints";
-import { setMessage, clearMessage } from "../messages";
-
-//import authServices from "./authServices";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -20,7 +17,6 @@ export const register = createAsyncThunk("auth/register", (user, thunkAPI) => {
   axios
     .post(`${API_URL}${REGISTER_ENDPOINT}`, user)
     .then((e) => {
-      thunkAPI.dispatch(setMessage(e.data));
       console.log("Inside authSlice", e.data);
     })
     .catch((err) => {
